@@ -24,3 +24,11 @@ steps:
     scriptType: pscore
     scriptLocation: inlineScript
     inlineScript: az storage account create -n "stg09234504" -g "example-rg" -l "UK South" --sku Standard_LRS
+
+- task: AzureCLI@2
+  displayName: Create Storage
+  inputs:
+    azureSubscription: serviceconnection
+    scriptType: pscore
+    scriptLocation: scriptPath
+    inlineScript: $(Pipeline.Workspace)/bicep/run.ps1
