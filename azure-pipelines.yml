@@ -18,9 +18,9 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 - task: AzureCLI@2
-  displayName: Bicep apply
+  displayName: Create Storage 
   inputs:
-    azureSubscription: MyAzureDevOpsConnectionName
+    azureSubscription: serviceconnection
     scriptType: pscore
     scriptLocation: inlineScript
-    inlineScript: az group create -n "myRG" -l "UK South"
+    inlineScript: az storage account create -n "stg09234504" -g "example-rg" -l "UK South" --sku Standard_LRS
