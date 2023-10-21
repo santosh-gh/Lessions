@@ -31,4 +31,4 @@ steps:
     azureSubscription: serviceconnection
     scriptType: pscore
     scriptLocation: scriptPath
-    inlineScript: $(Pipeline.Workspace)/bicep/run.ps1
+    inlineScript: $(Pipeline.Workspace)/CLI/StorageAccount.azcli
