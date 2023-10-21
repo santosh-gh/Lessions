@@ -17,5 +17,10 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
-- task: 
-    Powershell: "PowerShell single line"
+- task: AzureCLI@2
+  displayName: Bicep apply
+  inputs:
+    azureSubscription: MyAzureDevOpsConnectionName
+    scriptType: pscore
+    scriptLocation: inlineScript
+    inlineScript: az group create -n "myRG" -l "UK South"
