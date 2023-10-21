@@ -1,0 +1,17 @@
+# Login
+az login 
+
+$resourceGroup = "example-rg"
+$location = "UK South"
+# az group create -n $resourceGroup -l $location
+
+# Create Storage Account
+$storageAccountName = "teststg89098"
+az storage account create -n $storageAccountName -g $resourceGroup -l $location --sku Standard_LRS
+
+# Create Storage Account Container
+$containerName = "tfstate"
+az storage container create -n $containerName --account-name $storageAccountName
+
+
+serviceconnection
