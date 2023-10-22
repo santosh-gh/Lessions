@@ -42,6 +42,13 @@ stages:
               echo See https://aka.ms/yaml
             displayName: 'Run a multi-line script'
 
+          - task: Bash@3
+            displayName: 'Echo Test'
+            inputs:
+              targetType: inline
+              script: |
+                echo "test"
+
           - task: CmdLine@2
             inputs:
               script: |
@@ -83,13 +90,13 @@ stages:
         #     scriptLocation: inlineScript
         #     inlineScript: az storage account create -n "stg09234504" -g "example-rg" -l "UK South" --sku Standard_LRS
 
-        - task: AzureCLI@2
-          displayName: Create Storage
-          inputs:
-            azureSubscription: serviceconnection
-            scriptType: pscore
-            scriptLocation: scriptPath
-            inlineScript: "$(System.DefaultWorkingDirectory)/CLI/StorageAccount.azcli"
+        # - task: AzureCLI@2
+        #   displayName: Create Storage
+        #   inputs:
+        #     azureSubscription: serviceconnection
+        #     scriptType: pscore
+        #     scriptLocation: scriptPath
+        #     inlineScript: "$(System.DefaultWorkingDirectory)/CLI/StorageAccount.azcli"
 
         # - task: AzureCLI@2
         #   displayName: 'Deploy AKS'
