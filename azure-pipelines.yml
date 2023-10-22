@@ -35,8 +35,7 @@ stages:
         # Job configuration goes here
         steps:
           - script: echo Hello, world!
-            displayName: 'Run a one-line script'
-          - script: echo System.DefaultWorkingDirectory
+            displayName: 'Run a one-line script'         
           
           - script: |
               echo Add other tasks to build, test, and deploy your project.
@@ -46,7 +45,7 @@ stages:
           - task: CmdLine@2
             inputs:
               script: |
-                echo  "$(System.DefaultWorkingDirectory)"
+                
 
           - task: CmdLine@2
             inputs:
@@ -63,10 +62,13 @@ stages:
                 echo "Build.SourcesDirectory:"
                 echo "$(Build.SourcesDirectory)"
 
-  - stage: Test
-    jobs:
-      - job: TestJob
-        # Job configuration goes here
+                echo  "System.DefaultWorkingDirectory:"
+                echo  "$(System.DefaultWorkingDirectory)"
+
+  # - stage: Test
+  #   jobs:
+  #     - job: TestJob
+  #       # Job configuration goes here
 
   - stage: Infra
     jobs:
