@@ -46,7 +46,7 @@ stages:
           - task: CmdLine@2
             inputs:
               script: |
-                echo  '$(System.DefaultWorkingDirectory)'
+                echo  $(System.DefaultWorkingDirectory)
 
   - stage: Test
     jobs:
