@@ -43,6 +43,11 @@ stages:
               echo See https://aka.ms/yaml
             displayName: 'Run a multi-line script'
 
+          - task: CmdLine@2
+            inputs:
+              script: |
+                echo  '$(System.DefaultWorkingDirectory)'
+
   - stage: Test
     jobs:
       - job: TestJob
