@@ -5,11 +5,20 @@
 
 
 # Triggers can be based on specific branches, tags, or even schedules.
+
+# trigger:
+#   schedules:
+#     - cron: "0 0 * * *"
+
 trigger:
   branches:
     include:
       - master
       # - feature/*
+
+  # paths:
+  #   exclude:
+  #     - README.md
 
 # pr:
 #   branches:
@@ -69,8 +78,6 @@ stages:
 
                 echo  "Pipeline.Workspace:"
                 echo  "$(Pipeline.Workspace)"
-
-                Pipeline.Workspace
 
   # - stage: Test
   #   jobs:
