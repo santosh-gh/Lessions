@@ -87,7 +87,7 @@ stages:
             azureSubscription: serviceconnection
             scriptType: pscore
             scriptLocation: scriptPath
-            inlineScript: $(System.DefaultWorkingDirectory)/CLI/StorageAccount.azcli
+            inlineScript: "$(System.DefaultWorkingDirectory)/CLI/StorageAccount.azcli"
 
         # - task: AzureCLI@2
         #   displayName: 'Deploy AKS'
