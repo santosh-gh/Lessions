@@ -47,12 +47,7 @@ stages:
             inputs:
               targetType: inline
               script: |
-                echo "test"
-
-          - task: CmdLine@2
-            inputs:
-              script: |
-                
+                echo "test"           
 
           - task: CmdLine@2
             inputs:
@@ -71,6 +66,11 @@ stages:
 
                 echo  "System.DefaultWorkingDirectory:"
                 echo  "$(System.DefaultWorkingDirectory)"
+
+                echo  "Pipeline.Workspace:"
+                echo  "$(Pipeline.Workspace)"
+
+                Pipeline.Workspace
 
   # - stage: Test
   #   jobs:
