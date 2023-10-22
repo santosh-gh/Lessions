@@ -77,40 +77,40 @@ stages:
   #     - job: TestJob
   #       # Job configuration goes here
 
-  - stage: Infra
-    jobs:
-      - job: CrateStorage
-        # Job configuration goes here
-        steps: 
-        # - task: AzureCLI@2
-        #   displayName: Create Storage 
-        #   inputs:
-        #     azureSubscription: serviceconnection
-        #     scriptType: pscore
-        #     scriptLocation: inlineScript
-        #     inlineScript: az storage account create -n "stg09234504" -g "example-rg" -l "UK South" --sku Standard_LRS
+  # - stage: Infra
+  #   jobs:
+  #     - job: CrateStorage
+  #       # Job configuration goes here
+  #       steps: 
+  #       # - task: AzureCLI@2
+  #       #   displayName: Create Storage 
+  #       #   inputs:
+  #       #     azureSubscription: serviceconnection
+  #       #     scriptType: pscore
+  #       #     scriptLocation: inlineScript
+  #       #     inlineScript: az storage account create -n "stg09234504" -g "example-rg" -l "UK South" --sku Standard_LRS
 
-        # - task: AzureCLI@2
-        #   displayName: Create Storage
-        #   inputs:
-        #     azureSubscription: serviceconnection
-        #     scriptType: pscore
-        #     scriptLocation: scriptPath
-        #     inlineScript: "$(System.DefaultWorkingDirectory)/CLI/StorageAccount.azcli"
+  #       # - task: AzureCLI@2
+  #       #   displayName: Create Storage
+  #       #   inputs:
+  #       #     azureSubscription: serviceconnection
+  #       #     scriptType: pscore
+  #       #     scriptLocation: scriptPath
+  #       #     inlineScript: "$(System.DefaultWorkingDirectory)/CLI/StorageAccount.azcli"
 
-        # - task: AzureCLI@2
-        #   displayName: 'Deploy AKS'
-        #   inputs:
-        #     azureSubscription: $(AzureResourceManagerConnection)
-        #     scriptType: bash
-        #     scriptLocation: inlineScript
-        #     addSpnToEnvironment: true
-        #     inlineScript: |
-        #       #!/bin/bash     
+  #       # - task: AzureCLI@2
+  #       #   displayName: 'Deploy AKS'
+  #       #   inputs:
+  #       #     azureSubscription: $(AzureResourceManagerConnection)
+  #       #     scriptType: bash
+  #       #     scriptLocation: inlineScript
+  #       #     addSpnToEnvironment: true
+  #       #     inlineScript: |
+  #       #       #!/bin/bash     
     
-        #       # $AKS_RG = "aks-rg"  
-        #       # $AKS_CLUSTER = "aks-cluster"   
-        #       # $AKS_LOCATION = "southindia"
+  #       #       # $AKS_RG = "aks-rg"  
+  #       #       # $AKS_CLUSTER = "aks-cluster"   
+  #       #       # $AKS_LOCATION = "southindia"
     
-        #       az group create -l southindia -n aks-rg
-        #       az aks create -g aks-rg -n aks-cluster --enable-managed-identity --node-count 1 --generate-ssh-keys
+  #       #       az group create -l southindia -n aks-rg
+  #       #       az aks create -g aks-rg -n aks-cluster --enable-managed-identity --node-count 1 --generate-ssh-keys
