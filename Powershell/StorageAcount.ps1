@@ -3,7 +3,7 @@ $location = "UK South"
 
 New-AzResourceGroup -Name $resourceGroup -Location $location
 
-$storageAccountName = "teststg89098"
+$storageAccountName = "teststg89"
 
 New-AzStorageAccount -ResourceGroupName $resourceGroup `
   -Name $storageAccountName `
@@ -13,7 +13,7 @@ New-AzStorageAccount -ResourceGroupName $resourceGroup `
   -AllowBlobPublicAccess $true
 
 # Create a context object using Azure AD credentials
- $ctx = New-AzStorageContext -StorageAccountName $storageAccountName -UseConnectedAccount
+$ctx = New-AzStorageContext -StorageAccountName $storageAccountName -UseConnectedAccount
 
 $containerName = "tfstate"
 New-AzStorageContainer -Name $containerName -Context $ctx

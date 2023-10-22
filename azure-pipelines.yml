@@ -3,32 +3,85 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+
+# Triggers can be based on specific branches, tags, or even schedules.
 trigger:
-- master
+  branches:
+    include:
+      - master
+      # - feature/*
+
+# pr:
+#   branches:
+#     include:
+#     - master
+#     - feature*
+
+# variables:
+#   - group: domo-api-variables
+#   - name: BuildConfiguration
+#     value: "Release"
+
+resources:
+  - repo: self
 
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildJob
+        # Job configuration goes here
+        steps:
+          - script: echo Hello, world!
+            displayName: 'Run a one-line script'
+          - script: $(System.DefaultWorkingDirectory)
+          
+          - script: |
+              echo Add other tasks to build, test, and deploy your project.
+              echo See https://aka.ms/yaml
+            displayName: 'Run a multi-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-- task: AzureCLI@2
-  displayName: Create Storage 
-  inputs:
-    azureSubscription: serviceconnection
-    scriptType: pscore
-    scriptLocation: inlineScript
-    inlineScript: az storage account create -n "stg09234504" -g "example-rg" -l "UK South" --sku Standard_LRS
+  - stage: Test
+    jobs:
+      - job: TestJob
+        # Job configuration goes here
 
-- task: AzureCLI@2
-  displayName: Create Storage
-  inputs:
-    azureSubscription: serviceconnection
-    scriptType: pscore
-    scriptLocation: scriptPath
-    inlineScript: $(Pipeline.Workspace)/CLI/StorageAccount.azcli
+  - stage: Infra
+    jobs:
+      - job: Crate-Storage
+        # Job configuration goes here
+        steps: 
+        # - task: AzureCLI@2
+        #   displayName: Create Storage 
+        #   inputs:
+        #     azureSubscription: serviceconnection
+        #     scriptType: pscore
+        #     scriptLocation: inlineScript
+        #     inlineScript: az storage account create -n "stg09234504" -g "example-rg" -l "UK South" --sku Standard_LRS
+
+        - task: AzureCLI@2
+          displayName: Create Storage
+          inputs:
+            azureSubscription: serviceconnection
+            scriptType: pscore
+            scriptLocation: scriptPath
+            inlineScript: $(Pipeline.Workspace)/CLI/StorageAccount.azcli
+
+        # - task: AzureCLI@2
+        #   displayName: 'Deploy AKS'
+        #   inputs:
+        #     azureSubscription: $(AzureResourceManagerConnection)
+        #     scriptType: bash
+        #     scriptLocation: inlineScript
+        #     addSpnToEnvironment: true
+        #     inlineScript: |
+        #       #!/bin/bash     
+    
+        #       # $AKS_RG = "aks-rg"  
+        #       # $AKS_CLUSTER = "aks-cluster"   
+        #       # $AKS_LOCATION = "southindia"
+    
+        #       az group create -l southindia -n aks-rg
+        #       az aks create -g aks-rg -n aks-cluster --enable-managed-identity --node-count 1 --generate-ssh-keys
