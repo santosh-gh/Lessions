@@ -94,12 +94,13 @@ stages:
                 echo  "Pipeline.Workspace:"
                 echo  "$(Pipeline.Workspace)"
 
-          # - task: PowerShell@2
-          #   displayName: 'PowerShell Script'
-          #   inputs:
-          #     targetType: filePath
-          #     filePath: '$(Build.SourcesDirectory)/Powershell/StorageAcount.ps1'
-          #     arguments: 'whatever your script needs..'
+          - task: PowerShell@2
+            displayName: 'PowerShell Script'
+            inputs:
+              targetType: filePath
+              filePath: '$(Build.SourcesDirectory)\Powershell\StorageAcount.ps1'
+              pwsh: true
+              # arguments: 'whatever your script needs..'
 
           # - task: PowerShell@2
           #   inputs:
