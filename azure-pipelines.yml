@@ -98,7 +98,7 @@ stages:
             displayName: 'PowerShell Script'
             inputs:
               targetType: filePath
-              filePath: '$(Build.SourcesDirectory)/Powershell/StorageAcount.ps1'
+              filePath: '$(Build.SourcesDirectory)/Powershell/test,ps1.ps1'
               pwsh: true
               # arguments: 'whatever your script needs..'
 
