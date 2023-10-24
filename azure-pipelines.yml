@@ -44,11 +44,19 @@ stages:
         # Job configuration goes here
         steps:
 
-          - powershell: "I'm running PowerShell on a pipeline agent. Woohoo!!"
+          # - powershell: "I'm running PowerShell on a pipeline agent. Woohoo!!"
 
-          - powershell: |
-              This is script line 1
-                This is script line 2
+          # - powershell: |
+          #     This is script line 1
+          #       This is script line 2
+          
+
+          - task: PowerShell@2
+            inputs:
+              targetType: 'inline'
+              script: 'Write-Host "This is me running PowerShell code!"'
+          - powershell: 'Write-Host "This is me running PowerShell code!"'
+
 
           - script: echo Hello, world!
             displayName: 'Run a one-line script'         
