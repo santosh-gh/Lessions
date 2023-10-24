@@ -1,19 +1,21 @@
-$resourceGroup = "example-rg"
-$location = "UK South"
+# $resourceGroup = "example-rg"
+# $location = "UK South"
 
-# New-AzResourceGroup -Name $resourceGroup -Location $location
+# # New-AzResourceGroup -Name $resourceGroup -Location $location
 
-$storageAccountName = "teststg89"
+# $storageAccountName = "teststg89"
 
-New-AzStorageAccount -ResourceGroupName $resourceGroup `
-  -Name $storageAccountName `
-  -Location $location `
-  -SkuName Standard_LRS `
-  -Kind StorageV2 `
-  -AllowBlobPublicAccess $true
+# New-AzStorageAccount -ResourceGroupName $resourceGroup `
+#   -Name $storageAccountName `
+#   -Location $location `
+#   -SkuName Standard_LRS `
+#   -Kind StorageV2 `
+#   -AllowBlobPublicAccess $true
 
-# Create a context object using Azure AD credentials
-$ctx = New-AzStorageContext -StorageAccountName $storageAccountName -UseConnectedAccount
+# # Create a context object using Azure AD credentials
+# $ctx = New-AzStorageContext -StorageAccountName $storageAccountName -UseConnectedAccount
 
-$containerName = "tfstate"
-New-AzStorageContainer -Name $containerName -Context $ctx
+# $containerName = "tfstate"
+# New-AzStorageContainer -Name $containerName -Context $ctx
+
+Write-Host "++++++++++++This is me running PowerShell code!"
