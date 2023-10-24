@@ -43,6 +43,13 @@ stages:
       - job: BuildJob
         # Job configuration goes here
         steps:
+
+          - powershell: "I'm running PowerShell on a pipeline agent. Woohoo!!"
+
+          - powershell: |
+              This is script line 1
+                This is script line 2
+
           - script: echo Hello, world!
             displayName: 'Run a one-line script'         
           
@@ -86,9 +93,9 @@ stages:
           #     filePath: '$(Build.SourcesDirectory)/Powershell/StorageAcount.ps1'
           #     arguments: 'whatever your script needs..'
 
-          - task: PowerShell@2
-            inputs:
-              filePath: "$(System.DefaultWorkingDirectory)/Powershell/StorageAcount.ps1"
+          # - task: PowerShell@2
+          #   inputs:
+          #     filePath: "$(System.DefaultWorkingDirectory)/Powershell/StorageAcount.ps1"
 
           # - task: AzureCLI@2
           #   displayName: Assign Web App Managed Identity and App Role Permissions for Api App
