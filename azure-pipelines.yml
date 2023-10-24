@@ -44,6 +44,7 @@ stages:
         # Job configuration goes here
         steps:
 
+          - powershell: 'Write-Host "This is me running PowerShell code!"'
           - powershell: "I'm running PowerShell on a pipeline agent. Woohoo!!"
 
           - powershell: |
@@ -55,7 +56,7 @@ stages:
             inputs:
               targetType: 'inline'
               script: 'Write-Host "This is me running PowerShell code!"'
-          - powershell: 'Write-Host "This is me running PowerShell code!"'
+          
 
 
           - script: echo Hello, world!
