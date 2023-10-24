@@ -89,7 +89,7 @@ stages:
           - task: AzureCLI@2
             displayName: Assign Web App Managed Identity and App Role Permissions for Api App
             inputs:
-              azureSubscription: ${{ parameters.serviceConnectionName }}
+              azureSubscription: serviceconnection
               scriptType: 'pscore'
               scriptLocation: 'scriptPath'
               scriptPath: './Powershell/StorageAcount.ps1'
