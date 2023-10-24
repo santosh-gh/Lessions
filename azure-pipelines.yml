@@ -44,11 +44,11 @@ stages:
         # Job configuration goes here
         steps:
 
-          # - powershell: "I'm running PowerShell on a pipeline agent. Woohoo!!"
+          - powershell: "I'm running PowerShell on a pipeline agent. Woohoo!!"
 
-          # - powershell: |
-          #     This is script line 1
-          #       This is script line 2
+          - powershell: |
+              This is script line 1
+                This is script line 2
           
 
           - task: PowerShell@2
@@ -98,7 +98,7 @@ stages:
             displayName: 'PowerShell Script'
             inputs:
               targetType: filePath
-              filePath: '$(Build.SourcesDirectory)/Powershell/test,ps1.ps1'
+              filePath: '$(Build.SourcesDirectory)/Powershell/StorageAcount.ps1'
               pwsh: true
               # arguments: 'whatever your script needs..'
 
