@@ -86,13 +86,17 @@ stages:
           #     filePath: '$(Build.SourcesDirectory)/Powershell/StorageAcount.ps1'
           #     arguments: 'whatever your script needs..'
 
-          - task: AzureCLI@2
-            displayName: Assign Web App Managed Identity and App Role Permissions for Api App
+          - task: PowerShell@2
             inputs:
-              azureSubscription: serviceconnection
-              scriptType: 'pscore'
-              scriptLocation: 'scriptPath'
-              scriptPath: './Powershell/StorageAcount.ps1'
+              filePath: "$(System.DefaultWorkingDirectory)/Powershell/StorageAcount.ps1"
+
+          # - task: AzureCLI@2
+          #   displayName: Assign Web App Managed Identity and App Role Permissions for Api App
+          #   inputs:
+          #     azureSubscription: serviceconnection
+          #     scriptType: 'pscore'
+          #     scriptLocation: 'scriptPath'
+          #     scriptPath: './Powershell/StorageAcount.ps1'
             
   # - stage: Test
   #   jobs:
