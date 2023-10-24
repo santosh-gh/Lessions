@@ -9,7 +9,7 @@ terraform {
   # Update this block with the location of your terraform state file
   backend "azurerm" {
     resource_group_name  = "example-rg"
-    storage_account_name = "teststg89"
+    storage_account_name = "teststg100"
     container_name       = "tfstate"
     key                  = "terraform.tfstate"
   }
