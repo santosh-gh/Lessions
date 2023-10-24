@@ -79,13 +79,21 @@ stages:
                 echo  "Pipeline.Workspace:"
                 echo  "$(Pipeline.Workspace)"
 
-          - task: PowerShell@2
-            displayName: 'PowerShell Script'
-            inputs:
-              targetType: filePath
-              filePath: '$(Build.SourcesDirectory)/Powershell/StorageAcount.ps1'
-              arguments: 'whatever your script needs..'
+          # - task: PowerShell@2
+          #   displayName: 'PowerShell Script'
+          #   inputs:
+          #     targetType: filePath
+          #     filePath: '$(Build.SourcesDirectory)/Powershell/StorageAcount.ps1'
+          #     arguments: 'whatever your script needs..'
 
+          - task: AzureCLI@2
+            displayName: Assign Web App Managed Identity and App Role Permissions for Api App
+            inputs:
+              azureSubscription: ${{ parameters.serviceConnectionName }}
+              scriptType: 'pscore'
+              scriptLocation: 'scriptPath'
+              scriptPath: './Powershell/StorageAcount.ps1'
+            
   # - stage: Test
   #   jobs:
   #     - job: TestJob
