@@ -45,7 +45,7 @@ stages:
         steps:
 
           - powershell: 'Write-Host "This is me running PowerShell code!"'
-          - powershell: "I'm running PowerShell on a pipeline agent. Woohoo!!"
+          - powershell: 'I am running PowerShell on a pipeline agent. Woohoo!!'
 
           - powershell: |
               This is script line 1
