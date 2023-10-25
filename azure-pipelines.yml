@@ -160,7 +160,7 @@ stages:
             displayName: Azure CLI
             inputs:
               azureSubscription: serviceconnection
-              scriptType: pscore
+              scriptType: ps
               scriptLocation: inlineScript
               inlineScript: |
                 az --version
