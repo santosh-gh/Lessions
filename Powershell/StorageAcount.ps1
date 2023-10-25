@@ -1,22 +1,20 @@
-# $resourceGroup = "example-rg"
-# $location = "UK South"
+$resourceGroup = "example-rg"
+$location = "UK South"
 
-# # New-AzResourceGroup -Name $resourceGroup -Location $location
+# New-AzResourceGroup -Name $resourceGroup -Location $location
 
-# $storageAccountName = "mystorage0912iutb453200"
+$storageAccountName = "teststg100"
 
-# New-AzStorageAccount -ResourceGroupName $resourceGroup `
-#   -Name $storageAccountName `
-#   -Location $location `
-#   -SkuName Standard_LRS `
-#   -Kind StorageV2 `
-#   -AllowBlobPublicAccess $true
+New-AzStorageAccount -ResourceGroupName $resourceGroup `
+  -Name $storageAccountName `
+  -Location $location `
+  -SkuName Standard_LRS `
+  -Kind StorageV2 `
+  -AllowBlobPublicAccess $true
 
-# # Create a context object using Azure AD credentials
-# $ctx = New-AzStorageContext -StorageAccountName $storageAccountName -UseConnectedAccount
+# Create a context object using Azure AD credentials
+$ctx = New-AzStorageContext -StorageAccountName $storageAccountName -UseConnectedAccount
 
-# $containerName = "tfstate"
-# New-AzStorageContainer -Name $containerName -Context $ctx
-
-az account show
+$containerName = "tfstate"
+New-AzStorageContainer -Name $containerName -Context $ctx
 
