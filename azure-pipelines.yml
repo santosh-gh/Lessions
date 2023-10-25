@@ -139,7 +139,7 @@ stages:
           # # Run a shell script using Bash.
           - task: ShellScript@2
             inputs:
-              scriptPath: './Batch/test.sh'
+              scriptPath: './Bash/test.sh'
 
           # # Run a Windows command or batch script and optionally allow it to change the environment.
           # - task: BatchScript@1
