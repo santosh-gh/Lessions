@@ -156,15 +156,15 @@ stages:
           #     #ScriptArguments: 
           #     azurePowerShellVersion: 'LatestVersion'
     
-          - task: AzureCLI@2
-            displayName: Azure CLI
-            inputs:
-              azureSubscription: serviceconnection
-              scriptType: ps
-              scriptLocation: inlineScript
-              inlineScript: |
-                az --version
-                az account show
+          # - task: AzureCLI@2
+          #   displayName: Azure CLI
+          #   inputs:
+          #     azureSubscription: serviceconnection
+          #     scriptType: ps
+          #     scriptLocation: inlineScript
+          #     inlineScript: |
+          #       az --version
+          #       az account show
 
           # - task: AzureCLI@2
           #   inputs:
@@ -230,7 +230,7 @@ stages:
   #       #       # $AKS_CLUSTER = "aks-cluster"   
   #       #       # $AKS_LOCATION = "southindia"
 
-  
+
     
   #       #       az group create -l southindia -n aks-rg
   #       #       az aks create -g aks-rg -n aks-cluster --enable-managed-identity --node-count 1 --generate-ssh-keys
