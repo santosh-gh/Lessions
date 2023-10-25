@@ -229,6 +229,8 @@ stages:
   #       #       # $AKS_RG = "aks-rg"  
   #       #       # $AKS_CLUSTER = "aks-cluster"   
   #       #       # $AKS_LOCATION = "southindia"
+
+  
     
   #       #       az group create -l southindia -n aks-rg
   #       #       az aks create -g aks-rg -n aks-cluster --enable-managed-identity --node-count 1 --generate-ssh-keys
