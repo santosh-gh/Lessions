@@ -44,6 +44,30 @@ stages:
         # Job configuration goes here
         steps:
 
+          # Linux
+          - bash: |
+              export IPADDR=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
+              echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+            condition: eq( variables['Agent.OS'], 'Linux' )
+            displayName: Get IP on Linux
+          # macOS
+          - bash: |
+              export IPADDR=$(ifconfig | grep 'en0' -A3 | grep inet | tail -n1 | awk '{print $2}')
+              echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+            condition: eq( variables['Agent.OS'], 'Darwin' )
+            displayName: Get IP on macOS
+          # Windows
+          - powershell: |
+              Set-Variable -Name IPADDR -Value ((Get-NetIPAddress | ?{ $_.AddressFamily -eq "IPv4" -and !($_.IPAddress -match "169") -and !($_.IPaddress -match "127") } | Select-Object -First 1).IPAddress)
+              Write-Host "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+            condition: eq( variables['Agent.OS'], 'Windows_NT' )
+            displayName: Get IP on Windows
+
+          # now we use the value, no matter where we got it
+          - script: |
+              echo The IP address is $(IP_ADDR)
+
+
           - powershell: 'Write-Host "I am running PowerShell on a pipeline agent. Woohoo!!"'
 
           - powershell: |
@@ -68,12 +92,12 @@ stages:
               # arguments: 'whatever your script needs..'
 
           - script: echo Hello, world!
-            displayName: 'Bash: one-line script'         
+            displayName: 'cross-platform: one-line script'         
           
           - script: |
               echo Add other tasks to build, test, and deploy your project.
               echo See https://aka.ms/yaml
-            displayName: 'Bash: multi-line script'
+            displayName: 'cross-platform: multi-line script'
 
           - task: Bash@3
             displayName: 'Bash@3: inline'
@@ -111,23 +135,23 @@ stages:
                 echo  "$(Pipeline.Workspace)"
 
 
-          # - task: AzurePowerShell@5
-          #   displayName: 'AzurePowerShell: Create Storage'
-          #   inputs:
-          #     azureSubscription: 'serviceconnection'
-          #     ScriptType: 'FilePath'
-          #     ScriptPath: './Powershell/StorageAcount.ps1'
-          #     #ScriptArguments: 
-          #     azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            displayName: 'AzurePowerShell: Create Storage'
+            inputs:
+              azureSubscription: 'serviceconnection'
+              ScriptType: 'FilePath'
+              ScriptPath: './Powershell/StorageAcount.ps1'
+              #ScriptArguments: 
+              azurePowerShellVersion: 'LatestVersion'
     
 
-          - task: AzureCLI@2
-            displayName: 'AzureCLI: Create Storage'
-            inputs:
-              azureSubscription: serviceconnection
-              scriptType: 'pscore'
-              scriptLocation: 'scriptPath'
-              scriptPath: './Powershell/StorageAcount.ps1'
+          # - task: AzureCLI@2
+          #   displayName: 'AzureCLI: Create Storage'
+          #   inputs:
+          #     azureSubscription: serviceconnection
+          #     scriptType: 'pscore'
+          #     scriptLocation: 'scriptPath'
+          #     scriptPath: './Powershell/StorageAcount.ps1'
             
   # - stage: Test
   #   jobs:
