@@ -156,6 +156,15 @@ stages:
           #     #ScriptArguments: 
           #     azurePowerShellVersion: 'LatestVersion'
     
+          - task: AzureCLI@2
+            displayName: Azure CLI
+            inputs:
+              azureSubscription: serviceconnection
+              scriptType: pscore
+              scriptLocation: inlineScript
+              inlineScript: |
+                az --version
+                az account show
 
           # - task: AzureCLI@2
           #   displayName: 'AzureCLI: Create Storage'
