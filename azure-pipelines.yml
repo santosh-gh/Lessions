@@ -166,6 +166,14 @@ stages:
                 az --version
                 az account show
 
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: serviceconnection
+              scriptType: 'pscore'
+              scriptLocation: 'inlineScript'
+              #arguments: '$(AZURE_STORAGE_ACCOUNT) $(AZURE_STORAGE_KEY)'
+              inlineScript: './Powershell/StorageAcount.ps1'
+
           # - task: AzureCLI@2
           #   displayName: 'AzureCLI: Create Storage'
           #   inputs:
