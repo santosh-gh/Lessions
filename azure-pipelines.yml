@@ -44,11 +44,11 @@ stages:
         # Job configuration goes here
         steps:
 
-          - powershell: '"I am running PowerShell on a pipeline agent. Woohoo!!"'
+          - powershell: I am running PowerShell on a pipeline agent. Woohoo!!
 
           - powershell: |
-              '"This is script line 1
-               This is script line 2"'    
+               This is script line 1
+               This is script line 2
 
           - task: PowerShell@2
             displayName: 'PowerShell@2: inline'         
@@ -107,7 +107,14 @@ stages:
                 echo  "Pipeline.Workspace:"
                 echo  "$(Pipeline.Workspace)"
 
-          
+
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'serviceconnection'
+              ScriptType: 'FilePath'
+              ScriptPath: './Powershell/StorageAcount.ps1'
+              #ScriptArguments: -Location 'centralus' -ResourceGroupName 'demogroup' -TemplateFile templates\mainTemplate.json
+              azurePowerShellVersion: 'LatestVersion'
 
           # - task: PowerShell@2
           #   inputs:
