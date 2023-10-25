@@ -50,6 +50,9 @@ stages:
                'This is script line 1
                This is script line 2'
 
+          - powershell: .\script1.ps1
+          - pwsh: ./script1.ps1
+
           - task: PowerShell@2
             displayName: 'PowerShell@2: inline'         
             inputs:
