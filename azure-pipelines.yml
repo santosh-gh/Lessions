@@ -44,7 +44,7 @@ stages:
         # Job configuration goes here
         steps:
 
-          - powershell: I am running PowerShell on a pipeline agent. Woohoo!!
+          - powershell: 'Write-Host "I am running PowerShell on a pipeline agent. Woohoo!!"'
 
           - powershell: |
                This is script line 1
