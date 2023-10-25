@@ -44,30 +44,6 @@ stages:
         # Job configuration goes here
         steps:
 
-          # Linux
-          - bash: |
-              export IPADDR=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
-              echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
-            condition: eq( variables['Agent.OS'], 'Linux' )
-            displayName: Get IP on Linux
-          # macOS
-          - bash: |
-              export IPADDR=$(ifconfig | grep 'en0' -A3 | grep inet | tail -n1 | awk '{print $2}')
-              echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
-            condition: eq( variables['Agent.OS'], 'Darwin' )
-            displayName: Get IP on macOS
-          # Windows
-          - powershell: |
-              Set-Variable -Name IPADDR -Value ((Get-NetIPAddress | ?{ $_.AddressFamily -eq "IPv4" -and !($_.IPAddress -match "169") -and !($_.IPaddress -match "127") } | Select-Object -First 1).IPAddress)
-              Write-Host "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
-            condition: eq( variables['Agent.OS'], 'Windows_NT' )
-            displayName: Get IP on Windows
-
-          # now we use the value, no matter where we got it
-          - script: |
-              echo The IP address is $(IP_ADDR)
-
-
           - powershell: 'Write-Host "I am running PowerShell on a pipeline agent. Woohoo!!"'
 
           - powershell: |
@@ -75,6 +51,7 @@ stages:
                This is script line 2'
 
           - powershell: $(Build.SourcesDirectory)\Powershell\script1.ps1
+
           - pwsh: $(Build.SourcesDirectory)/Powershell/script1.ps1
 
           - task: PowerShell@2
@@ -105,6 +82,31 @@ stages:
               targetType: inline
               script: |
                 echo "test"   
+          
+          # Linux
+          - bash: |
+              export IPADDR=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
+              echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+            condition: eq( variables['Agent.OS'], 'Linux' )
+            displayName: Get IP on Linux
+          # macOS
+          - bash: |
+              export IPADDR=$(ifconfig | grep 'en0' -A3 | grep inet | tail -n1 | awk '{print $2}')
+              echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+            condition: eq( variables['Agent.OS'], 'Darwin' )
+            displayName: Get IP on macOS
+          # Windows
+          - powershell: |
+              Set-Variable -Name IPADDR -Value ((Get-NetIPAddress | ?{ $_.AddressFamily -eq "IPv4" -and !($_.IPAddress -match "169") -and !($_.IPaddress -match "127") } | Select-Object -First 1).IPAddress)
+              Write-Host "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+            condition: eq( variables['Agent.OS'], 'Windows_NT' )
+            displayName: Get IP on Windows
+
+          # now we use the value, no matter where we got it
+          - script: |
+              echo The IP address is $(IP_ADDR)
+
+
 
           - task: CmdLine@2
             displayName: 'CmdLine@2: one-line'
@@ -134,15 +136,19 @@ stages:
                 echo  "Pipeline.Workspace:"
                 echo  "$(Pipeline.Workspace)"
 
-
-          - task: AzurePowerShell@5
-            displayName: 'AzurePowerShell: Create Storage'
+          - task: BatchScript@1
             inputs:
-              azureSubscription: 'serviceconnection'
-              ScriptType: 'FilePath'
-              ScriptPath: './Powershell/StorageAcount.ps1'
-              #ScriptArguments: 
-              azurePowerShellVersion: 'LatestVersion'
+              filename: '.\Batch\test.bat'
+
+
+          # - task: AzurePowerShell@5
+          #   displayName: 'AzurePowerShell: Create Storage'
+          #   inputs:
+          #     azureSubscription: 'serviceconnection'
+          #     ScriptType: 'FilePath'
+          #     ScriptPath: './Powershell/StorageAcount.ps1'
+          #     #ScriptArguments: 
+          #     azurePowerShellVersion: 'LatestVersion'
     
 
           # - task: AzureCLI@2

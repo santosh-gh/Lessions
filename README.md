@@ -32,3 +32,11 @@ https://medium.com/medialesson/using-azure-devops-pipeline-variables-in-powershe
 
 
 https://medium.com/@williamwarley/a-complete-guide-to-azure-devops-pipelines-with-yaml-templates-636cbebc52eb
+
+
+# Azure Pipeline Microsoft
+https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/cross-platform-scripting?view=azure-devops&tabs=yaml
+
+# Azure Pipeline Tasks
+https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/?view=azure-pipelines&viewFallbackFrom=azure-devops
+
