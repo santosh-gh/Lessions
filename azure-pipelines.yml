@@ -108,25 +108,23 @@ stages:
                 echo  "$(Pipeline.Workspace)"
 
 
-          - task: AzurePowerShell@5
+          # - task: AzurePowerShell@5
+          #   displayName: 'AzurePowerShell: Create Storage'
+          #   inputs:
+          #     azureSubscription: 'serviceconnection'
+          #     ScriptType: 'FilePath'
+          #     ScriptPath: './Powershell/StorageAcount.ps1'
+          #     #ScriptArguments: 
+          #     azurePowerShellVersion: 'LatestVersion'
+    
+
+          - task: AzureCLI@2
+            displayName: 'AzureCLI: Create Storage'
             inputs:
-              azureSubscription: 'serviceconnection'
-              ScriptType: 'FilePath'
-              ScriptPath: './Powershell/StorageAcount.ps1'
-              #ScriptArguments: -Location 'centralus' -ResourceGroupName 'demogroup' -TemplateFile templates\mainTemplate.json
-              azurePowerShellVersion: 'LatestVersion'
-
-          # - task: PowerShell@2
-          #   inputs:
-          #     filePath: "$(System.DefaultWorkingDirectory)/Powershell/StorageAcount.ps1"
-
-          # - task: AzureCLI@2
-          #   displayName: Assign Web App Managed Identity and App Role Permissions for Api App
-          #   inputs:
-          #     azureSubscription: serviceconnection
-          #     scriptType: 'pscore'
-          #     scriptLocation: 'scriptPath'
-          #     scriptPath: './Powershell/StorageAcount.ps1'
+              azureSubscription: serviceconnection
+              scriptType: 'pscore'
+              scriptLocation: 'scriptPath'
+              scriptPath: './Powershell/StorageAcount.ps1'
             
   # - stage: Test
   #   jobs:

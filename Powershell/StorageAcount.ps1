@@ -3,7 +3,7 @@ $location = "UK South"
 
 # New-AzResourceGroup -Name $resourceGroup -Location $location
 
-$storageAccountName = "mystorage091298453200"
+$storageAccountName = "mystorage0912iutb453200"
 
 New-AzStorageAccount -ResourceGroupName $resourceGroup `
   -Name $storageAccountName `
