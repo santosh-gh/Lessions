@@ -180,7 +180,7 @@ stages:
               scriptType: 'pscore'
               scriptLocation: 'scriptPath'
               #arguments: '$(AZURE_STORAGE_ACCOUNT) $(AZURE_STORAGE_KEY)'
-              scriptPath: '$(System.DefaultWorkingDirectory)/Powershell/script1.ps1'
+              scriptPath: '$(System.DefaultWorkingDirectory)/Powershell/StorageAcount.ps1'
 
           - task: AzureCLI@2
             displayName: 'AzureCLI: Create Storage'
