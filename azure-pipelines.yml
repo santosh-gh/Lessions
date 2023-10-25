@@ -40,40 +40,53 @@ pool:
 stages:
   - stage: Build
     jobs:
-      - job: BuildJob
+      - job: ScriptJob
         # Job configuration goes here
         steps:
 
           - powershell: 'Write-Host "I am running PowerShell on a pipeline agent. Woohoo!!"'
 
           - powershell: |
-              'Write-Host "This is script line 1
-                This is script line 2"'
-          
+              'Write-Host "This is script line 1"'
+              'Write-Host "This is script line 2"'      
 
           - task: PowerShell@2
+            displayName: 'PowerShell@2: inline'         
             inputs:
               targetType: 'inline'
-              script: 'Write-Host "This is me running PowerShell code!"'
-          
+              script: 'Write-Host "This is me running PowerShell code!"'    
 
+          - task: PowerShell@2
+            displayName: 'PowerShell@2: filepath'
+            inputs:
+              targetType: filePath
+              filePath: '$(Build.SourcesDirectory)/Powershell/script1.ps1'
+              pwsh: true
+              # arguments: 'whatever your script needs..'
 
           - script: echo Hello, world!
-            displayName: 'Run a one-line script'         
+            displayName: 'Bash: one-line script'         
           
           - script: |
               echo Add other tasks to build, test, and deploy your project.
               echo See https://aka.ms/yaml
-            displayName: 'Run a multi-line script'
+            displayName: 'Bash: multi-line script'
 
           - task: Bash@3
-            displayName: 'Echo Test'
+            displayName: 'Bash@3: inline'
             inputs:
               targetType: inline
               script: |
-                echo "test"           
+                echo "test"   
 
           - task: CmdLine@2
+            displayName: 'CmdLine@2: one-line'
+            inputs:
+              script: echo "Structure of work folder of this pipeline:"
+                
+
+          - task: CmdLine@2
+            displayName: 'CmdLine@2: multi-line'
             inputs:
               script: |
                 echo "Structure of work folder of this pipeline:"
@@ -94,13 +107,7 @@ stages:
                 echo  "Pipeline.Workspace:"
                 echo  "$(Pipeline.Workspace)"
 
-          - task: PowerShell@2
-            displayName: 'PowerShell Script'
-            inputs:
-              targetType: filePath
-              filePath: '$(Build.SourcesDirectory)/Powershell/script1.ps1'
-              pwsh: true
-              # arguments: 'whatever your script needs..'
+          
 
           # - task: PowerShell@2
           #   inputs:
