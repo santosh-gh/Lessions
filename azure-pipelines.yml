@@ -177,7 +177,7 @@ stages:
           - task: AzureCLI@2
             inputs:
               azureSubscription: serviceconnection
-              scriptType: 'ps'
+              scriptType: 'pscore'
               scriptLocation: 'scriptPath'
               #arguments: '$(AZURE_STORAGE_ACCOUNT) $(AZURE_STORAGE_KEY)'
               scriptPath: '$(System.DefaultWorkingDirectory)/Powershell/script1.ps1'
