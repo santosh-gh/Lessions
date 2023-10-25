@@ -47,8 +47,8 @@ stages:
           - powershell: 'Write-Host "I am running PowerShell on a pipeline agent. Woohoo!!"'
 
           - powershell: |
-               This is script line 1
-               This is script line 2
+               'This is script line 1
+               This is script line 2'
 
           - task: PowerShell@2
             displayName: 'PowerShell@2: inline'         
