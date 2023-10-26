@@ -40,3 +40,7 @@ https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/cross-platform-
 # Azure Pipeline Tasks
 https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/?view=azure-pipelines&viewFallbackFrom=azure-devops
 
+
+# 5 Useful YAML pipeline template examples for Azure DevOps
+https://azureis.fun/posts/5-useful-YAML-pipeline-template-examples-for-Azure-DevOps/
+

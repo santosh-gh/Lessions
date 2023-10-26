@@ -1,9 +1,9 @@
 $resourceGroup = "example-rg"
 $location = "UK South"
 
-# New-AzResourceGroup -Name $resourceGroup -Location $location
+New-AzResourceGroup -Name $resourceGroup -Location $location
 
-$storageAccountName = "teststg100"
+$storageAccountName = "teststg1009090876"
 
 New-AzStorageAccount -ResourceGroupName $resourceGroup `
   -Name $storageAccountName `
