@@ -147,24 +147,25 @@ stages:
           #     filename: '.\Batch\test.bat'
 
 
-          - task: AzurePowerShell@5
-            displayName: 'AzurePowerShell: Create Storage'
-            inputs:
-              azureSubscription: 'serviceconnection'
-              ScriptType: 'FilePath'
-              ScriptPath: './Powershell/StorageAcount.ps1'
-              #ScriptArguments: 
-              azurePowerShellVersion: 'LatestVersion'
-    
-          # - task: AzureCLI@2
-          #   displayName: Azure CLI
+          # - task: AzurePowerShell@5
+          #   displayName: 'AzurePowerShell: Create Storage'
           #   inputs:
-          #     azureSubscription: serviceconnection
-          #     scriptType: ps
-          #     scriptLocation: inlineScript
-          #     inlineScript: |
-          #       az --version
-          #       az account show
+          #     azureSubscription: 'serviceconnection'
+          #     ScriptType: 'FilePath'
+          #     ScriptPath: './Powershell/StorageAcount.ps1'
+          #     #ScriptArguments: 
+          #     azurePowerShellVersion: 'LatestVersion'
+    
+          - task: AzureCLI@2
+            displayName: Azure CLI
+            inputs:
+              azureSubscription: serviceconnection
+              scriptType: ps
+              scriptLocation: inlineScript
+              inlineScript: |
+                az --version
+                az account show
+                
 
           # - task: AzureCLI@2
           #   inputs:
